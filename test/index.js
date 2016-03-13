@@ -6,7 +6,10 @@ import Relate, {
   relateReducer,
   actionTypes,
   mutation,
-  mergeFragments
+  mergeFragments,
+  setHeader,
+  removeHeader,
+  setEndpoint
 } from '../lib';
 
 describe('Relate', () => {
@@ -16,6 +19,9 @@ describe('Relate', () => {
       dataConnect,
       rootDataConnect,
       relateReducer,
+      removeHeader,
+      setEndpoint,
+      setHeader,
       actionTypes,
       mutation,
       mergeFragments
