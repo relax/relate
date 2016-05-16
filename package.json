@@ -26,6 +26,7 @@
     "invariant": "^2.2.0",
     "lodash.debounce": "^4.0.3",
     "lodash.defaults": "^4.0.1",
+    "lodash.filter": "^4.4.0",
     "lodash.find": "^4.4.0",
     "lodash.foreach": "^4.1.0",
     "lodash.get": "^4.1.2",
