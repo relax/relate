@@ -263,6 +263,84 @@ describe('Connectors store', () => {
     store.db = {};
   });
 
+  it('Doesn\'t mix up unrelated data', () => {
+    store.db = {
+      // A widget
+      complex_id123: {
+        _id: 'complex_id123',
+        title: 'A',
+        data: ['blah', 'blaah', 'bleh']
+      },
+      // Another widget
+      complex_id456: {
+        _id: 'complex_id456',
+        title: 'B',
+        data: [1, 3, 6]
+      },
+      // Data ABOUT those widgets but of a different graphQL type
+      complex_id999: {
+        widgetsStuff: [
+          {
+            refersTo: 'complex_id123',
+            title: {
+              type: 'String'
+            },
+            description: 'This widget has string data'
+          },
+          {
+            refersTo: 'complex_id456',
+            title: {
+              type: 'String'
+            },
+            description: 'This widget has numeric data'
+          }
+        ]
+      }
+    };
+
+    connectors.connectors = {
+      connector1: {
+        data: {
+          widgets: ['complex_id123', 'complex_id456'],
+          pageWithWidgets: 'complex_id999'
+        }
+      }
+    };
+
+    expect(connectors.generateConnectorData('connector1')).toEqual({
+      widgets: [
+        {
+          _id: 'complex_id123',
+          title: 'A',
+          data: ['blah', 'blaah', 'bleh']
+        },
+        {
+          _id: 'complex_id456',
+          title: 'B',
+          data: [1, 3, 6]
+        }
+      ],
+      pageWithWidgets: {
+        widgetsStuff: [
+          {
+            refersTo: 'complex_id123',
+            title: {
+              type: 'String'
+            },
+            description: 'This widget has string data'
+          },
+          {
+            refersTo: 'complex_id456',
+            title: {
+              type: 'String'
+            },
+            description: 'This widget has numeric data'
+          }
+        ]
+      }
+    });
+  });
+
   it('Gets connectors to update', () => {
     connectors.connectors = {
       connector1: {
