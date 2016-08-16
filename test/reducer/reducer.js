@@ -2,6 +2,7 @@ import expect from 'expect';
 
 import {relateReducer, relateReducerInit, actionTypes} from '../../lib';
 
+
 describe('Reducer', () => {
   it('Does not alter state if not a Relate action', () => {
     const state = {something: 1};
