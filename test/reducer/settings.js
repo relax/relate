@@ -11,7 +11,8 @@ describe('Settings', () => {
         Accept: 'application/json'
       },
       body: {},
-      endpoint: '/graphql'
+      endpoint: '/graphql',
+      withCredentials: false
     };
 
     expect(relateReducer()).toEqual(expectedState);
