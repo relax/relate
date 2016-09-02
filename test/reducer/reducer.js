@@ -19,16 +19,22 @@ describe('Reducer', () => {
         Accept: 'application/json'
       },
       body: {},
-      endpoint: '/test'
+      endpoint: '/test',
+      withCredentials: false
     });
-    const reducer1 = relateReducerInit({headers: {test: 1}});
+
+    const reducer1 = relateReducerInit({
+      headers: {test: 1},
+      withCredentials: true
+    });
     const newState1 = reducer1();
     expect(newState1).toEqual({
       headers: {
         test: 1
       },
       body: {},
-      endpoint: '/test'
+      endpoint: '/test',
+      withCredentials: true
     });
 
     // revert
@@ -37,7 +43,8 @@ describe('Reducer', () => {
         'Content-Type': 'application/json',
         Accept: 'application/json'
       },
-      endpoint: '/graphql'
+      endpoint: '/graphql',
+      withCredentials: false
     });
     const newState2 = reducer2();
     expect(newState2).toEqual({
@@ -46,7 +53,8 @@ describe('Reducer', () => {
         Accept: 'application/json'
       },
       body: {},
-      endpoint: '/graphql'
+      endpoint: '/graphql',
+      withCredentials: false
     });
   });
 
