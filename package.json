@@ -1,6 +1,6 @@
 {
   "name": "relate-js",
-  "version": "0.6.10",
+  "version": "0.6.11",
   "description": "Relate is an agnostic client data connector for React on top of Redux",
   "main": "dist/index.js",
   "scripts": {
