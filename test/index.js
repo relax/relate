@@ -13,7 +13,8 @@ import Relate, {
   setEndpoint,
   setBody,
   removeBody,
-  getDataDependencies
+  getDataDependencies,
+  capture
 } from '../lib';
 
 describe('Relate', () => {
@@ -32,7 +33,8 @@ describe('Relate', () => {
       mergeFragments,
       setBody,
       removeBody,
-      getDataDependencies
+      getDataDependencies,
+      capture
     });
 
     expect(dataConnect).toBeA(Function);
@@ -43,5 +45,6 @@ describe('Relate', () => {
     expect(mutation).toBeA(Function);
     expect(mergeFragments).toBeA(Function);
     expect(getDataDependencies).toBeA(Function);
+    expect(capture).toBeA(Function);
   });
 });
