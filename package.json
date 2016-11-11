@@ -29,7 +29,7 @@
     "invariant": "^2.2.0",
     "lodash": "^4.16.6",
     "q": "^1.4.1",
-    "relax-fragments": "^0.1.3",
+    "relax-fragments": "^0.1.4",
     "superagent": "^1.7.2",
     "warning": "^2.1.0"
   },
