@@ -1,6 +1,5 @@
 /* eslint-disable */
 var webpack = require('webpack');
-var LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 var reactExternal = {
   root: 'React',
@@ -40,7 +39,6 @@ module.exports = {
     extensions: ['', '.js', '.jsx', '.json']
   },
   plugins: [
-    new LodashModuleReplacementPlugin,
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
