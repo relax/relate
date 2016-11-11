@@ -2,3 +2,8 @@ lib/
 test/
 docs/
 .nyc_output
+.coveralls.yml
+.eslintrc
+.travis.yml
+.babelrc
+webpack.config.js
