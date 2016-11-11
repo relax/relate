@@ -1,3 +1,7 @@
+/* eslint-disable */
+var webpack = require('webpack');
+var LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+
 var reactExternal = {
   root: 'React',
   commonjs2: 'react',
@@ -35,6 +39,35 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx', '.json']
   },
+  plugins: [
+    new LodashModuleReplacementPlugin,
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      mangle: true,
+      minimize: true,
+      sourceMap: false,
+      output: {
+        comments: false
+      },
+      compress: {
+        sequences: true,
+        dead_code: true,
+        conditionals: true,
+        booleans: true,
+        unused: true,
+        if_return: true,
+        join_vars: true,
+        drop_console: true,
+        warnings: false
+      }
+    }),
+    new webpack.optimize.DedupePlugin()
+  ],
   module: {
     loaders: [
       {
@@ -43,9 +76,7 @@ module.exports = {
         exclude: /node_modules/,
         query: {
           presets: ['react', 'es2015', 'stage-0'],
-          plugins: [
-            ['transform-decorators-legacy']
-          ]
+          plugins: ['lodash']
         }
       }
     ]
